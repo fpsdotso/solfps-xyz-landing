@@ -1,24 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SOLFPS.XYZ Landing Page
+
+Landing page for **solfps.xyz** - The first fully onchain first person shooter game on Solana.
+
+**Entry for Solana Colosseum Cyberpunk Hackathon**
+
+## Features
+
+- 🎮 Modern cyberpunk-themed landing page
+- 📹 Demo video showcase
+- 📝 Waitlist functionality with Microsoft Excel API integration
+- ⚡ Built with Next.js 15 and React 19
+- 🎨 Responsive design with gradient animations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ or Bun
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository and install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+2. Copy the environment variables template:
+
+```bash
+cp .env.local.example .env.local
+```
+
+3. Run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Microsoft Excel API Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To connect the waitlist to Microsoft Excel:
+
+### Step 1: Create an Azure App Registration
+
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to **Azure Active Directory** > **App registrations**
+3. Click **New registration**
+4. Name your app (e.g., "SOLFPS Waitlist")
+5. Select **Accounts in this organizational directory only**
+6. Click **Register**
+
+### Step 2: Configure API Permissions
+
+1. In your app registration, go to **API permissions**
+2. Click **Add a permission**
+3. Select **Microsoft Graph**
+4. Choose **Application permissions**
+5. Add: `Files.ReadWrite.All`
+6. Click **Grant admin consent**
+
+### Step 3: Create Client Secret
+
+1. Go to **Certificates & secrets**
+2. Click **New client secret**
+3. Add a description and select expiration
+4. **Copy the secret value immediately** (you won't see it again!)
+
+### Step 4: Get Your IDs
+
+- **Tenant ID**: Found on the app Overview page
+- **Client ID**: Found on the app Overview page
+- **Client Secret**: The value you copied in Step 3
+
+### Step 5: Prepare Excel Workbook
+
+1. Create an Excel file on OneDrive or SharePoint
+2. Name a worksheet "Waitlist" (or customize in `.env.local`)
+3. Add headers in the first row: `Timestamp | Name | Email | Wallet Address`
+4. Get the workbook ID from the file URL (the long string after `/items/`)
+
+### Step 6: Update Environment Variables
+
+Edit `.env.local` with your credentials:
+
+```env
+AZURE_TENANT_ID=your-tenant-id
+AZURE_CLIENT_ID=your-client-id
+AZURE_CLIENT_SECRET=your-client-secret
+EXCEL_WORKBOOK_ID=your-workbook-id
+EXCEL_WORKSHEET_NAME=Waitlist
+```
+
+### Development Mode
+
+If environment variables are not configured, the waitlist will work in development mode and log submissions to the console instead of Excel.
 
 ## Learn More
 
