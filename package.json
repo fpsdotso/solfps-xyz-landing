@@ -12,18 +12,17 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
 	},
 	"dependencies": {
-		"@azure/identity": "^4.13.0",
-		"@azure/msal-node": "^3.8.0",
-		"@microsoft/microsoft-graph-client": "^3.0.7",
 		"@opennextjs/cloudflare": "^1.10.1",
-		"isomorphic-fetch": "^3.0.0",
+		"googleapis": "^162.0.0",
 		"next": "15.4.6",
+		"nodemailer": "^7.0.9",
 		"react": "19.1.0",
 		"react-dom": "19.1.0"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
 		"@types/node": "^20",
+		"@types/nodemailer": "^7.0.2",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"eslint": "^9",

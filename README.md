@@ -8,9 +8,11 @@ Landing page for **solfps.xyz** - The first fully onchain first person shooter g
 
 - 🎮 Modern cyberpunk-themed landing page
 - 📹 Demo video showcase
-- 📝 Waitlist functionality with Microsoft Excel API integration
+- 📝 Waitlist functionality with Google Sheets API integration
+- 📧 Automatic email confirmation via Zoho Mail
 - ⚡ Built with Next.js 15 and React 19
 - 🎨 Responsive design with gradient animations
+- 💯 100% Free setup (no paid services required!)
 
 ## Getting Started
 
@@ -41,63 +43,74 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Microsoft Excel API Setup
+## Google Sheets API Setup
 
-To connect the waitlist to Microsoft Excel:
+To connect the waitlist to Google Sheets (completely FREE, no app registration needed!):
 
-### Step 1: Create an Azure App Registration
+### Quick Setup (10 minutes)
 
-1. Go to [Azure Portal](https://portal.azure.com)
-2. Navigate to **Azure Active Directory** > **App registrations**
-3. Click **New registration**
-4. Name your app (e.g., "SOLFPS Waitlist")
-5. Select **Accounts in this organizational directory only**
-6. Click **Register**
+1. **Create a Google Sheet**
+   - Go to [Google Sheets](https://sheets.google.com)
+   - Create a new spreadsheet named "SOLFPS Waitlist"
+   - Add headers: `Timestamp | Name | Email | Wallet Address`
+   - Copy the Sheet ID from the URL
 
-### Step 2: Configure API Permissions
+2. **Setup Google Cloud Project**
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Create a new project
+   - Enable **Google Sheets API**
 
-1. In your app registration, go to **API permissions**
-2. Click **Add a permission**
-3. Select **Microsoft Graph**
-4. Choose **Application permissions**
-5. Add: `Files.ReadWrite.All`
-6. Click **Grant admin consent**
+3. **Create Service Account**
+   - Go to APIs & Services → Credentials
+   - Create Service Account
+   - Generate JSON key (download and keep safe)
 
-### Step 3: Create Client Secret
+4. **Share Sheet with Service Account**
+   - Copy the `client_email` from your JSON key
+   - Share your Google Sheet with this email (Editor access)
 
-1. Go to **Certificates & secrets**
-2. Click **New client secret**
-3. Add a description and select expiration
-4. **Copy the secret value immediately** (you won't see it again!)
-
-### Step 4: Get Your IDs
-
-- **Tenant ID**: Found on the app Overview page
-- **Client ID**: Found on the app Overview page
-- **Client Secret**: The value you copied in Step 3
-
-### Step 5: Prepare Excel Workbook
-
-1. Create an Excel file on OneDrive or SharePoint
-2. Name a worksheet "Waitlist" (or customize in `.env.local`)
-3. Add headers in the first row: `Timestamp | Name | Email | Wallet Address`
-4. Get the workbook ID from the file URL (the long string after `/items/`)
-
-### Step 6: Update Environment Variables
-
-Edit `.env.local` with your credentials:
+5. **Configure Environment Variables**
+   - Copy `.env.local.example` to `.env.local`
+   - Add values from your JSON key file:
 
 ```env
-AZURE_TENANT_ID=your-tenant-id
-AZURE_CLIENT_ID=your-client-id
-AZURE_CLIENT_SECRET=your-client-secret
-EXCEL_WORKBOOK_ID=your-workbook-id
-EXCEL_WORKSHEET_NAME=Waitlist
+GOOGLE_SHEET_ID=your-sheet-id-from-url
+GOOGLE_PROJECT_ID=your-project-id
+GOOGLE_PRIVATE_KEY_ID=your-private-key-id
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_CLIENT_EMAIL=your-service-account@project.iam.gserviceaccount.com
+GOOGLE_CLIENT_ID=123456789012345678901
+SHEET_NAME=Waitlist
 ```
+
+   Each value comes from your downloaded JSON file.
+
+📖 **Detailed step-by-step guide:** See [GOOGLE_SHEETS_SETUP.md](./GOOGLE_SHEETS_SETUP.md)
+
+## Email Notifications Setup (Optional)
+
+Send automatic confirmation emails to users via Zoho Mail:
+
+1. **Create Zoho Account** (free)
+2. **Generate App Password** in Zoho Security settings
+3. **Add to `.env.local`:**
+
+```env
+ZOHO_SMTP_HOST=smtp.zoho.com
+ZOHO_SMTP_PORT=465
+ZOHO_EMAIL=your-email@yourdomain.com
+ZOHO_PASSWORD=your-app-password
+ZOHO_FROM_NAME=SOLFPS Team
+```
+
+📖 **Full guide:** See [ZOHO_MAIL_SETUP.md](./ZOHO_MAIL_SETUP.md)
 
 ### Development Mode
 
-If environment variables are not configured, the waitlist will work in development mode and log submissions to the console instead of Excel.
+If environment variables are not configured:
+- Waitlist will work in development mode
+- Submissions logged to console instead of Google Sheets
+- Emails will not be sent
 
 ## Learn More
 
