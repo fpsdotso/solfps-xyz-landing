@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
 import { sendWaitlistConfirmation } from '@/lib/email';
 
+// Force Node.js runtime (required for googleapis and nodemailer)
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 // Google Sheets API configuration
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID || '';
 const GOOGLE_PROJECT_ID = process.env.GOOGLE_PROJECT_ID || '';

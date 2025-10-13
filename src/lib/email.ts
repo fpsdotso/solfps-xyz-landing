@@ -140,17 +140,17 @@ export async function sendWaitlistConfirmation(
       </div>
       
       <div class="message">
-        You're now among the first to know about the <strong>world's first fully onchain first person shooter</strong> built on Solana. We're building something truly revolutionary, and we can't wait to share it with you.
+        You're now among the first to know about a <strong>fully onchain first person shooter</strong> built on Solana. We're building something truly revolutionary, and we can't wait to share it with you.
       </div>
       
       <div class="features">
         <h3>🎮 What to Expect:</h3>
         <ul>
-          <li>⚡ Lightning-fast gameplay powered by Solana</li>
+          <li>⚡ Real-time gameplay powered by Solana</li>
           <li>🔗 Every action recorded onchain</li>
           <li>💎 True ownership of your in-game assets</li>
-          <li>🏆 Competitive tournaments with real rewards</li>
-          <li>🌐 Play-to-earn mechanics built from the ground up</li>
+          <li>🏆 Competitive multiplayer battles</li>
+          <li>� Fast-paced, skill-based combat</li>
         </ul>
       </div>
       
@@ -160,7 +160,7 @@ export async function sendWaitlistConfirmation(
       <ul>
         <li>Early access opportunities</li>
         <li>Development updates and behind-the-scenes content</li>
-        <li>Exclusive NFT drops and rewards</li>
+        <li>Beta testing invitations</li>
         <li>Launch date announcements</li>
       </ul>
       
@@ -186,19 +186,19 @@ Hey ${name || 'there'}!
 
 Thanks for joining the SOLFPS.XYZ waitlist! We're thrilled to have you on board for the future of gaming.
 
-You're now among the first to know about the world's first fully onchain first person shooter built on Solana. We're building something truly revolutionary, and we can't wait to share it with you.
+You're now among the first to know about a fully onchain first person shooter built on Solana. We're building something truly revolutionary, and we can't wait to share it with you.
 
 What to Expect:
-- Lightning-fast gameplay powered by Solana
+- Real-time gameplay powered by Solana
 - Every action recorded onchain
 - True ownership of your in-game assets
-- Competitive tournaments with real rewards
-- Play-to-earn mechanics built from the ground up
+- Competitive multiplayer battles
+- Fast-paced, skill-based combat
 
 We'll keep you updated with:
 - Early access opportunities
 - Development updates and behind-the-scenes content
-- Exclusive NFT drops and rewards
+- Beta testing invitations
 - Launch date announcements
 
 Stay tuned! We'll be in touch soon with more exciting news.
