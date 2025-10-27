@@ -1,36 +1,38 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 // Zoho Mail SMTP configuration
-const ZOHO_SMTP_HOST = process.env.ZOHO_SMTP_HOST || 'smtp.zoho.com';
-const ZOHO_SMTP_PORT = parseInt(process.env.ZOHO_SMTP_PORT || '465');
-const ZOHO_EMAIL = process.env.ZOHO_EMAIL || '';
-const ZOHO_PASSWORD = process.env.ZOHO_PASSWORD || '';
-const ZOHO_FROM_NAME = process.env.ZOHO_FROM_NAME || 'SOLFPS Team';
+const ZOHO_SMTP_HOST = process.env.ZOHO_SMTP_HOST || "smtp.zoho.com";
+const ZOHO_SMTP_PORT = parseInt(process.env.ZOHO_SMTP_PORT || "465");
+const ZOHO_EMAIL = process.env.ZOHO_EMAIL || "";
+const ZOHO_PASSWORD = process.env.ZOHO_PASSWORD || "";
+const ZOHO_FROM_NAME = process.env.ZOHO_FROM_NAME || "SOLFPS Team";
 
 export async function sendWaitlistConfirmation(
-  email: string,
-  name?: string
+	email: string,
+	name?: string
 ) {
-  // Check if email credentials are configured
-  if (!ZOHO_EMAIL || !ZOHO_PASSWORD) {
-    console.log('Email credentials not configured. Skipping email send.');
-    return { success: false, message: 'Email not configured' };
-  }
+	// Check if email credentials are configured
+	if (!ZOHO_EMAIL || !ZOHO_PASSWORD) {
+		console.log(
+			"Email credentials not configured. Skipping email send."
+		);
+		return { success: false, message: "Email not configured" };
+	}
 
-  try {
-    // Create transporter using Zoho SMTP
-    const transporter = nodemailer.createTransport({
-      host: ZOHO_SMTP_HOST,
-      port: ZOHO_SMTP_PORT,
-      secure: true, // Use SSL
-      auth: {
-        user: ZOHO_EMAIL,
-        pass: ZOHO_PASSWORD,
-      },
-    });
+	try {
+		// Create transporter using Zoho SMTP
+		const transporter = nodemailer.createTransport({
+			host: ZOHO_SMTP_HOST,
+			port: ZOHO_SMTP_PORT,
+			secure: true, // Use SSL
+			auth: {
+				user: ZOHO_EMAIL,
+				pass: ZOHO_PASSWORD,
+			},
+		});
 
-    // Email HTML template
-    const htmlContent = `
+		// Email HTML template
+		const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,16 +129,16 @@ export async function sendWaitlistConfirmation(
 <body>
   <div class="container">
     <div class="logo">
-      <h1>SOLFPS.XYZ</h1>
+      <h1>FPS.SO</h1>
     </div>
     
     <div class="content">
       <div class="greeting">
-        Hey ${name || 'there'}! 👋
+        Hey ${name || "there"}! 👋
       </div>
       
       <div class="message">
-        Thanks for joining the <span class="highlight">SOLFPS.XYZ</span> waitlist! We're thrilled to have you on board for the future of gaming.
+        Thanks for joining the <span class="highlight">FPS.SO</span> waitlist! We're thrilled to have you on board for the future of gaming.
       </div>
       
       <div class="message">
@@ -169,7 +171,7 @@ export async function sendWaitlistConfirmation(
       </div>
       
       <div class="footer">
-        <p>SOLFPS.XYZ - The Future of Onchain Gaming</p>
+        <p>FPS.SO - The Future of Onchain Gaming</p>
         <p style="color: #999; font-size: 12px; margin-top: 8px;">
           Solana Colosseum Cyberpunk Hackathon Project
         </p>
@@ -180,11 +182,11 @@ export async function sendWaitlistConfirmation(
 </html>
     `.trim();
 
-    // Plain text version
-    const textContent = `
-Hey ${name || 'there'}!
+		// Plain text version
+		const textContent = `
+Hey ${name || "there"}!
 
-Thanks for joining the SOLFPS.XYZ waitlist! We're thrilled to have you on board for the future of gaming.
+Thanks for joining the FPS.SO waitlist! We're thrilled to have you on board for the future of gaming.
 
 You're now among the first to know about a fully onchain first person shooter built on Solana. We're building something truly revolutionary, and we can't wait to share it with you.
 
@@ -204,24 +206,23 @@ We'll keep you updated with:
 Stay tuned! We'll be in touch soon with more exciting news.
 
 ---
-SOLFPS.XYZ - The Future of Onchain Gaming
+FPS.SO - The Future of Onchain Gaming
 Solana Colosseum Cyberpunk Hackathon Project
     `.trim();
 
-    // Send email
-    const info = await transporter.sendMail({
-      from: `"${ZOHO_FROM_NAME}" <${ZOHO_EMAIL}>`,
-      to: email,
-      subject: '🎮 Welcome to SOLFPS.XYZ Waitlist!',
-      text: textContent,
-      html: htmlContent,
-    });
+		// Send email
+		const info = await transporter.sendMail({
+			from: `"${ZOHO_FROM_NAME}" <${ZOHO_EMAIL}>`,
+			to: email,
+			subject: "🎮 Welcome to FPS.SO Waitlist!",
+			text: textContent,
+			html: htmlContent,
+		});
 
-    console.log('Email sent successfully:', info.messageId);
-    return { success: true, messageId: info.messageId };
-
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return { success: false, error };
-  }
+		console.log("Email sent successfully:", info.messageId);
+		return { success: true, messageId: info.messageId };
+	} catch (error) {
+		console.error("Error sending email:", error);
+		return { success: false, error };
+	}
 }
