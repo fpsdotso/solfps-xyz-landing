@@ -2,23 +2,39 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+  background: #0a0a0a;
   position: relative;
   overflow-x: hidden;
 }
 
-.page::before {
-  content: '';
-  position: absolute;
+/* Background Video Layer */
+.demoVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Video Overlay for Better Contrast */
+.videoOverlay {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 26, 0.85) 0%,
+    rgba(26, 10, 46, 0.75) 50%,
+    rgba(10, 10, 26, 0.85) 100%
+  );
+  backdrop-filter: blur(2px);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .main {
@@ -27,30 +43,32 @@
   flex-direction: column;
   align-items: center;
   padding: 60px 20px;
-  gap: 60px;
+  gap: 80px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 
+/* Hero Section */
 .hero {
   text-align: center;
   margin-top: 40px;
 }
 
 .mainTitle {
-  font-size: 72px;
+  font-size: 96px;
   font-weight: 900;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% auto;
   animation: shine 3s linear infinite;
-  letter-spacing: -2px;
+  letter-spacing: -3px;
+  text-shadow: 0 0 80px rgba(0, 255, 255, 0.5);
 }
 
 @keyframes shine {
@@ -60,89 +78,277 @@
 }
 
 .tagline {
-  font-size: 24px;
-  margin-bottom: 24px;
-  opacity: 0.9;
+  font-size: 28px;
+  margin-bottom: 28px;
+  opacity: 0.95;
   font-weight: 300;
-  max-width: 700px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.4;
 }
 
 .badge {
   display: inline-block;
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(0, 255, 255, 0.5);
   border-radius: 24px;
   backdrop-filter: blur(10px);
+  margin-bottom: 40px;
 }
 
 .badgeText {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #00ffff;
 }
 
-.videoContainer {
-  width: 100%;
-  max-width: 900px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(0, 255, 255, 0.2);
-  border: 2px solid rgba(0, 255, 255, 0.3);
+/* CTA Buttons */
+.ctaContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 
-.demoVideo {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: #000;
+.primaryButton {
+  padding: 18px 48px;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.4);
 }
 
+.primaryButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 255, 255, 0.6);
+}
+
+.primaryButton:active {
+  transform: translateY(-2px);
+}
+
+.primaryButton:focus-visible {
+  outline: 3px solid #00ffff;
+  outline-offset: 4px;
+}
+
+.secondaryButton {
+  padding: 18px 48px;
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #00ffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+}
+
+.secondaryButton:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: #00ffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.3);
+}
+
+.secondaryButton:active {
+  transform: translateY(0);
+}
+
+.secondaryButton:focus-visible {
+  outline: 3px solid #00ffff;
+  outline-offset: 4px;
+}
+
+/* Features Section */
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
 }
 
 .feature {
   text-align: center;
-  padding: 32px 24px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 36px 28px;
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 16px;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .feature:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 255, 255, 0.5);
-  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.2);
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 12px 36px rgba(0, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .feature h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
+  font-size: 26px;
+  margin-bottom: 14px;
   font-weight: 600;
 }
 
 .feature p {
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 15px;
+  opacity: 0.85;
   line-height: 1.6;
 }
 
+/* Team Section */
+.teamSection {
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 56px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.teamCard {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.teamCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 16px 48px rgba(0, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.teamImageWrapper {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(0, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
+}
+
+.teamCard:hover .teamImageWrapper {
+  border-color: #00ffff;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+}
+
+.teamImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.teamName {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.teamRole {
+  font-size: 16px;
+  color: #00ffff;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.teamBio {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 20px;
+  min-height: 60px;
+}
+
+.teamSocials {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialLink {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #00ffff;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 255, 255, 0.4);
+}
+
+.socialLink:focus-visible {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}
+
+/* Footer */
 .footer {
   padding: 40px 20px;
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  backdrop-filter: blur(10px);
 }
 
 .footerText {
@@ -151,10 +357,36 @@
   font-weight: 300;
 }
 
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .mainTitle {
+    animation: none;
+  }
+
+  .feature:hover,
+  .teamCard:hover,
+  .primaryButton:hover,
+  .secondaryButton:hover {
+    transform: none;
+  }
+
+  .socialLink:hover {
+    transform: none;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .teamGrid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+  }
+}
+
 @media (max-width: 768px) {
   .main {
     padding: 40px 20px;
-    gap: 40px;
+    gap: 60px;
   }
 
   .hero {
@@ -162,39 +394,105 @@
   }
 
   .mainTitle {
+    font-size: 64px;
+    letter-spacing: -2px;
+  }
+
+  .tagline {
+    font-size: 20px;
+  }
+
+  .ctaContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .feature {
+    padding: 28px 24px;
+  }
+
+  .teamSection {
+    padding: 40px 10px;
+  }
+
+  .sectionTitle {
+    font-size: 40px;
+  }
+
+  .sectionSubtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .teamCard {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
     font-size: 48px;
+    letter-spacing: -1px;
   }
 
   .tagline {
     font-size: 18px;
   }
 
-  .features {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .badgeText {
+    font-size: 13px;
   }
 
-  .feature {
-    padding: 24px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .mainTitle {
-    font-size: 36px;
-    letter-spacing: -1px;
-  }
-
-  .tagline {
+  .primaryButton,
+  .secondaryButton {
+    padding: 14px 28px;
     font-size: 16px;
   }
 
-  .badgeText {
-    font-size: 12px;
+  .feature h3 {
+    font-size: 22px;
   }
 
-  .feature h3 {
+  .feature p {
+    font-size: 14px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+  }
+
+  .sectionSubtitle {
+    font-size: 15px;
+  }
+
+  .teamName {
     font-size: 20px;
+  }
+
+  .teamRole {
+    font-size: 14px;
+  }
+
+  .teamBio {
+    font-size: 13px;
   }
 
   .footerText {

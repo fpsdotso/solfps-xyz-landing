@@ -1,6 +1,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Neon Color Palette */
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-cyan-glow: rgba(0, 255, 255, 0.5);
+  --neon-magenta-glow: rgba(255, 0, 255, 0.5);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #00ffff, #ff00ff);
+  --gradient-glow: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +29,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,8 +47,39 @@ a {
   text-decoration: none;
 }
 
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+/* Focus Visible Styles for Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Ensure Text Remains Visible During Webfont Load */
+@font-face {
+  font-display: swap;
 }
