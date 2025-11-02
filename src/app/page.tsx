@@ -33,7 +33,7 @@ export default function Home() {
 					</p>
 					<div className={styles.badge}>
 						<span className={styles.badgeText}>
-							Solana Colosseum Cyberpunk Hackathon
+							Solana Colosseum Cypherpunk Hackathon
 						</span>
 					</div>
 

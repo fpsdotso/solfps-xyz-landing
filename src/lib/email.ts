@@ -207,7 +207,7 @@ Stay tuned! We'll be in touch soon with more exciting news.
 
 ---
 FPS.SO - The Future of Onchain Gaming
-Solana Colosseum Cyberpunk Hackathon Project
+Solana Colosseum Cypherpunk Hackathon Project
     `.trim();
 
 		// Send email
