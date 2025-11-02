@@ -173,7 +173,7 @@ export async function sendWaitlistConfirmation(
       <div class="footer">
         <p>FPS.SO - The Future of Onchain Gaming</p>
         <p style="color: #999; font-size: 12px; margin-top: 8px;">
-          Solana Colosseum Cyberpunk Hackathon Project
+          Solana Colosseum Cypherpunk Hackathon Project
         </p>
       </div>
     </div>
